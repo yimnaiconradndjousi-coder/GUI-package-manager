@@ -9,6 +9,8 @@ on:
 
 jobs:
   build-tauri:
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     strategy:
       fail-fast: false
       matrix:
@@ -20,10 +22,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (v20)
+      - name: Setup Node.js (v24)
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install Rust (Stable)
         uses: dtolnay/rust-toolchain@stable
