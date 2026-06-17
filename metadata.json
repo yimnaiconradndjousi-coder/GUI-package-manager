@@ -1,0 +1,6 @@
+{
+  "name": "Local Dependency Manager",
+  "description": "A local-first GUI app to spin up Node.js and Python projects, manage dependencies, and guarantee that package downloads never waste data if the connection drops.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
