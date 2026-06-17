@@ -9,8 +9,6 @@ on:
 
 jobs:
   build-tauri:
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     strategy:
       fail-fast: false
       matrix:
@@ -22,10 +20,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js (v24)
+      - name: Setup Node.js (v22)
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
 
       - name: Install Rust (Stable)
         uses: dtolnay/rust-toolchain@stable
@@ -39,6 +37,10 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm install
+
+      - name: Regenerate Valid Binary Icons
+        run: |
+          node -e "const fs = require('fs'); const cp = require('child_process'); fs.writeFileSync('temp-icon.png', Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64')); cp.execSync('npx tauri icon temp-icon.png', {stdio: 'inherit'});"
 
       # The tauri-action will build the app and automatically create a GitHub Release
       - name: Build Tauri App

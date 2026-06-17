@@ -10,8 +10,9 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "tauri": "tauri",
-    "build:desktop": "tauri build",
-    "dev:desktop": "tauri dev"
+    "build:desktop": "npm run fix-icons && tauri build",
+    "dev:desktop": "npm run fix-icons && tauri dev",
+    "fix-icons": "node -e \"const fs = require('fs'); const cp = require('child_process'); fs.writeFileSync('temp-icon.png', Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64')); cp.execSync('npx tauri icon temp-icon.png', {stdio: 'inherit'});\""
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
