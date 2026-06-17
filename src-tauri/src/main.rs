@@ -3,9 +3,9 @@
 
 use tauri::{AppHandle, Emitter};
 use reqwest::Client;
-use serde::{Serialize, Deserialize};
+use serde::Serialize;
 use std::fs::OpenOptions;
-use std::io::{Seek, SeekFrom, Write};
+use std::io::Write;
 use std::path::Path;
 use futures_util::StreamExt;
 
